@@ -1,0 +1,14 @@
+services:
+  alert_service:
+    tty: true
+    build:
+      dockerfile: ./Dockerfile
+      context: alert_service
+    volumes:
+      - type: bind
+        source: ./alert_service/extract.sh
+        target: /dir/extract.sh
+    env_file:
+      - ./.env
+    entrypoint:
+      - /dir/extract.sh
